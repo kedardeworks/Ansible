@@ -1,0 +1,12 @@
+---
+
+- hosts: dev
+  tasks:
+   - name: Create a simple file using shell module
+     shell: touch kd.txt
+     args:
+      chdir: /home/kd
+      creates: kd.txt
+
+...
+

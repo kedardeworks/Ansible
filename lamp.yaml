@@ -1,0 +1,35 @@
+---
+
+- hosts: prod
+  become: yes
+  tasks:
+   - name: install LAMP stack 
+     apt:
+      pkg:
+       - apache2
+       - mysql-server
+       - php
+       - php-mysql
+      state: latest
+     notify:
+      - start apache
+      - start mysql-server
+      - deploy index.html
+
+  handlers:
+   - name: start apache
+     service:
+      name: mysql
+      state: started
+      enabled: yes
+   - name: start mysql-server
+     service:
+      name: mysql
+      state: started
+      enabled: yes
+   - name: deploy index.html file
+     copy: 
+      src: /home/kd/Documents/ansible/index.html
+      dest: /var/www/html/index.html
+
+...

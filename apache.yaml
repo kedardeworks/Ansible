@@ -1,0 +1,13 @@
+---
+
+- hosts: dev
+  become: yes
+  tasks:
+   - name: install apache on dev system
+     apt: 
+      name: apache2
+      update_cache: yes
+      state: latest
+
+...
+  
